@@ -11,6 +11,11 @@ const getContact = (req, res) => {
 
 const addContact = (req, res) => {
   console.log(req.body);
+  const { name, age, address } = req.body;
+  if (!name || !age || !address) {
+    res.status(400);
+    throw new Error("All fields are mandatory");
+  }
   res.status(200).json({ message: "Create Contact" });
 };
 
