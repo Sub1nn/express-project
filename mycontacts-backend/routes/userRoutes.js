@@ -4,6 +4,7 @@ const {
   loginUser,
   currentUser,
 } = require("../controllers/userController");
+const validateToken = require("../middleware/validateTokenHandler");
 const router = express.Router();
 
 //register endpoint to register the user
@@ -13,6 +14,6 @@ router.post("/register", registerUser);
 router.post("/login", loginUser);
 
 // endpoint for logging in the current user
-router.post("/current", currentUser);
+router.get("/current", validateToken, currentUser);
 
 module.exports = router;
